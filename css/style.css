@@ -1,0 +1,22 @@
+body {
+    padding-top: 70px;
+}
+
+.container-custom {
+    max-width: 1200px;
+}
+
+.table-primary {
+    --bs-table-bg: #0d6efd;
+    --bs-table-color: #fff;
+}
+
+.modal-header.bg-warning {
+    background-color: #ffc107 !important;
+    color: #333 !important;
+}
+
+.modal-header.bg-danger {
+    background-color: #dc3545 !important;
+    color: #fff !important;
+}
