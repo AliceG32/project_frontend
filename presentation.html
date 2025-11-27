@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Презентация - Каталог Фильмов</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
+
+    <style>
+        .reveal {
+            font-size: 30px;
+            line-height: 1.3;
+        }
+
+        .reveal .slides {
+            text-align: left;
+            width: 100% !important;
+            height: 100% !important;
+        }
+
+        .reveal section {
+            height: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .reveal h1, .reveal h2, .reveal h3 {
+            color: #0d6efd;
+            font-weight: 600;
+            word-wrap: break-word;
+        }
+
+        .reveal h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+            margin-bottom: 0.7em;
+        }
+
+        .reveal h3 {
+            font-size: 1.4em;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal p, .reveal li {
+            font-size: 0.9em;
+            line-height: 1.4;
+            margin-bottom: 0.5em;
+        }
+
+        .reveal ul, .reveal ol {
+            margin-left: 1em;
+            margin-bottom: 1em;
+        }
+
+        .reveal li {
+            margin-bottom: 0.3em;
+        }
+
+        .back-to-site {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: #0d6efd;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-site:hover {
+            background: #0b5ed7;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .reveal table {
+            font-size: 0.7em;
+            margin: 15px auto;
+            width: 95% !important;
+            table-layout: fixed;
+        }
+
+        .reveal th, .reveal td {
+            padding: 8px 12px;
+            word-wrap: break-word;
+        }
+
+        .reveal .table-primary {
+            background-color: #0d6efd;
+            color: white;
+        }
+
+        .reveal .controls {
+            color: #0d6efd;
+        }
+
+        .design-mockup {
+            border: 2px solid #0d6efd;
+            border-radius: 10px;
+            padding: 12px;
+            margin: 8px;
+            background: #f8f9fa;
+            font-size: 0.7em;
+            max-height: 400px;
+            overflow: auto;
+        }
+
+        .api-endpoint {
+            background: #e9ecef;
+            padding: 8px 10px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            margin: 4px 0;
+            font-size: 0.7em;
+            word-break: break-all;
+        }
+
+        .api-endpoint pre {
+            font-size: 0.6em;
+            margin: 5px 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .search-demo {
+            background: #d1ecf1;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #0dcaf0;
+            font-size: 0.8em;
+        }
+
+        .duration-filter-demo {
+            background: #e8f5e8;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #28a745;
+            margin: 10px 0;
+        }
+
+        .filter-preset {
+            background: #d4edda;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            padding: 8px;
+            margin: 5px 0;
+            font-size: 0.8em;
+        }
+
+        .actor-connections {
+            background: #fff3cd;
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #ffc107;
+        }
+
+        .actor-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 5px 0;
+            background: white;
+        }
+
+        .text-small {
+            font-size: 0.8em !important;
+        }
+
+        .text-smaller {
+            font-size: 0.7em !important;
+        }
+
+        .compact-list li {
+            margin-bottom: 0.2em;
+            font-size: 0.8em;
+        }
+
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .scrollable {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .reveal {
+                font-size: 24px;
+            }
+
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+
+            .design-mockup {
+                font-size: 0.6em;
+            }
+
+            .back-to-site {
+                bottom: 10px;
+                left: 10px;
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+<a href="index.html" class="back-to-site">
+    <i class="bi bi-arrow-left me-1"></i>На главную
+</a>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h1>Каталог Фильмов</h1>
+            <p class="text-small">Умная система управления киноколлекцией</p>
+        </section>
+
+        <section>
+            <section>
+                <h2>Описание идеи</h2>
+                <h4>Проблема, которую мы решаем</h4>
+                <ul class="compact-list">
+                    <li class="fragment">Разрозненные списки фильмов на разных платформах</li>
+                    <li class="fragment">Сложность отслеживания просмотренных фильмов</li>
+                    <li class="fragment">Отсутствие персонализированных рекомендаций</li>
+                    <li class="fragment">Нет единого места для управления своей киноколлекцией</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Наше решение</h2>
+                <div class="fragment">
+                    <h4>📚 Единый каталог</h4>
+                    <p class="text-small">Все ваши фильмы в одном месте</p>
+                </div>
+                <div class="fragment">
+                    <h4>❤️ Персонализация</h4>
+                    <p class="text-small">Система избранного и рейтингов</p>
+                </div>
+                <div class="fragment">
+                    <h4>🔍 Умный поиск</h4>
+                    <p class="text-small">Быстрый поиск по названиям и жанрам</p>
+                </div>
+                <div class="fragment">
+                    <h4>⏱️ Фильтр по длительности</h4>
+                    <p class="text-small">Поиск фильмов определенной длины</p>
+                </div>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Пользовательские сценарии</h2>
+                <h4>Сценарий 1: Поиск и добавление в избранное</h4>
+                <ol class="compact-list">
+                    <li class="fragment">Пользователь заходит на главную страницу</li>
+                    <li class="fragment">Видит список фильмов с рейтингами</li>
+                    <li class="fragment">Использует поиск для нахождения фильма</li>
+                    <li class="fragment">Нажимает кнопку "❤️" для добавления в избранное</li>
+                    <li class="fragment">Переходит в раздел "Избранное"</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Пользовательские сценарии</h2>
+                <h4>Сценарий 2: Редактирование информации</h4>
+                <ol class="compact-list">
+                    <li class="fragment">Пользователь находит фильм в каталоге</li>
+                    <li class="fragment">Нажимает кнопку "✏️" для редактирования</li>
+                    <li class="fragment">В модальном окне изменяет данные</li>
+                    <li class="fragment">Сохраняет изменения</li>
+                    <li class="fragment">Система обновляет данные в каталоге</li>
+                </ol>
+            </section>
+
+            <section>
+                <h2>Пользовательские сценарии</h2>
+                <h4>Сценарий 3: Поиск фильмов по длительности</h4>
+                <ol class="compact-list">
+                    <li class="fragment">Пользователь хочет найти короткий фильм для вечера</li>
+                    <li class="fragment">Использует фильтр "Короткие фильмы (< 90 мин)"</li>
+                    <li class="fragment">Система показывает подходящие варианты</li>
+                    <li class="fragment">Пользователь выбирает фильм по рейтингу</li>
+                    <li class="fragment">Начинает просмотр в удобное время</li>
+                </ol>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Дизайн системы</h2>
+                <h4>Главная страница с фильтром длительности</h4>
+                <div class="design-mockup">
+                    <div class="d-flex justify-content-between mb-2 p-2 bg-primary text-white">
+                        <span>🎬 Каталог Фильмов</span>
+                        <span>🔍 Поиск... | ❤️ Избранное</span>
+                    </div>
+
+                    <table class="table table-bordered table-sm">
+                        <thead class="bg-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Название</th>
+                            <th>Год</th>
+                            <th>Жанр</th>
+                            <th>Длит.</th>
+                            <th>Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Побег из Шоушенка</td>
+                            <td>1994</td>
+                            <td>Драма</td>
+                            <td>142 мин</td>
+                            <td>❤️ ℹ️ ✏️ 🗑️</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="text-center mt-2">
+                        [1] [2] [3] ... [Следующая]
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Дизайн системы</h2>
+                <h4>Страница фильма (модальное окно)</h4>
+                <div class="design-mockup">
+                    <div class="bg-info text-white p-2 mb-2">
+                        <h5 class="mb-0">🎬 Детали фильма: Побег из Шоушенка</h5>
+                    </div>
+                    <div class="row text-smaller">
+                        <div class="col-6">
+                            <strong>ID:</strong> 1<br>
+                            <strong>Год:</strong> 1994<br>
+                            <strong>Жанр:</strong> Драма<br>
+                            <strong>Рейтинг:</strong> ⭐ 9.3/10
+                        </div>
+                        <div class="col-6">
+                            <strong>Актеры:</strong> Тим Роббинс...<br>
+                            <strong>Режиссер:</strong> Фрэнк Дарабонт<br>
+                            <strong>Длительность:</strong> 142 мин
+                        </div>
+                    </div>
+                    <div class="mt-2 text-center">
+                        <button class="btn btn-success btn-sm">Добавить в избранное</button>
+                        <button class="btn btn-secondary btn-sm">Закрыть</button>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Дизайн системы</h2>
+                <h4>Страница избранного</h4>
+                <div class="design-mockup">
+                    <div class="d-flex justify-content-between mb-2 p-2 bg-warning text-dark">
+                        <span>❤️ Мои избранные фильмы</span>
+                        <span>📊 Статистика</span>
+                    </div>
+                    <div class="list-group">
+                        <div class="list-group-item d-flex justify-content-between py-1">
+                            <span>🎬 Побег из Шоушенка (1994)</span>
+                            <span>⭐ 9.3 | 🗑️</span>
+                        </div>
+                        <div class="list-group-item d-flex justify-content-between py-1">
+                            <span>🎬 Крестный отец (1972)</span>
+                            <span>⭐ 9.2 | 🗑️</span>
+                        </div>
+                    </div>
+                    <div class="mt-2 p-1 bg-light text-smaller">
+                        <strong>Статистика:</strong> 2 фильма · 2 жанра · 1994-1972
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>⏱️ Поиск фильмов по длительности</h2>
+                <h4>Найдите идеальный фильм под ваше время</h4>
+
+                <div class="duration-filter-demo">
+
+                    <div class="filter-preset">
+                        <strong>Быстрый выбор:</strong>
+                        <div class="mt-2">
+                            <button class="btn btn-outline-success btn-sm me-2">Короткие (< 90 мин)</button>
+                            <button class="btn btn-outline-primary btn-sm me-2">Средние (90-150 мин)</button>
+                            <button class="btn btn-outline-warning btn-sm">Длинные (> 150 мин)</button>
+                        </div>
+                        <strong>Или выбор определенной длительности фильма: хочу посмотреть 60 минутный фильм</strong>
+                    </div>
+
+                    <div class="mt-3">
+                        <h6 class="text-small">📊 Результаты поиска (90-150 минут):</h6>
+                        <div class="list-group">
+                            <div class="list-group-item list-group-item-success py-2">
+                                <strong>Побег из Шоушенка</strong><br>
+                                <small>142 мин · Драма · ⭐ 9.3/10</small>
+                            </div>
+                            <div class="list-group-item list-group-item-success py-2">
+                                <strong>Форрест Гамп</strong><br>
+                                <small>142 мин · Драма · ⭐ 8.8/10</small>
+                            </div>
+                            <div class="list-group-item list-group-item-success py-2">
+                                <strong>Начало</strong><br>
+                                <small>148 мин · Фантастика · ⭐ 8.8/10</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>🔍 Умный поиск фильмов</h2>
+                <h4>Поиск по ключевому слову "кольцо"</h4>
+                <div class="search-demo">
+                    <div class="input-group mb-2">
+                        <input type="text" class="form-control form-control-sm" value="кольцо" readonly>
+                        <button class="btn btn-primary btn-sm">🔍 Найти</button>
+                    </div>
+
+                    <div class="mt-3">
+                        <h5 class="text-small">Найдены фильмы:</h5>
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-success py-1">
+                                ✅ <strong>Властелин колец: Возвращение короля</strong><br>
+                                <small>2003 - Фэнтези - ⭐ 8.9/10 - 201 мин</small>
+                            </li>
+                            <li class="list-group-item list-group-item-warning py-1">
+                                🔍 <strong>Властелин колец: Братство кольца</strong><br>
+                                <small>2001 - Фэнтези - ⭐ 8.8/10 - 178 мин</small>
+                            </li>
+                            <li class="list-group-item py-1">
+                                💡 <strong>Хоббит: Нежданное путешествие</strong><br>
+                                <small>2012 - Фэнтези - ⭐ 7.8/10 - 169 мин</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>🚀 Комбинированные возможности</h2>
+                <h4>Поиск + Фильтр по длительности = Идеальный результат</h4>
+
+                <div class="duration-filter-demo">
+                    <h5 class="text-primary mb-3">🎯 Пример: "Фэнтези фильмы на 2-3 часа"</h5>
+
+                    <div class="row">
+                        <div class="col-6">
+                            <h6 class="text-small">🔍 Поиск:</h6>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" value="фэнтези" readonly>
+                                <button class="btn btn-primary">Найти</button>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <h6 class="text-small">⏱️ Длительность:</h6>
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control" value="120" readonly>
+                                <span class="input-group-text">-</span>
+                                <input type="number" class="form-control" value="180" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-3">
+                        <h6 class="text-small">🎬 Найденные фильмы:</h6>
+                        <div class="list-group">
+                            <div class="list-group-item list-group-item-success py-2">
+                                ✅ <strong>Властелин колец: Братство кольца</strong><br>
+                                <small>178 мин · Фэнтези · ⭐ 8.8/10</small>
+                            </div>
+                            <div class="list-group-item list-group-item-success py-2">
+                                ✅ <strong>Властелин колец: Две крепости</strong><br>
+                                <small>179 мин · Фэнтези · ⭐ 8.7/10</small>
+                            </div>
+                            <div class="list-group-item list-group-item-warning py-2">
+                                ⚠️ <strong>Гарри Поттер и Дары Смерти: Часть 2</strong><br>
+                                <small>130 мин · Фэнтези · ⭐ 8.1/10</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <section>
+            <h1>Спасибо за внимание!</h1>
+        </section>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+
+<script>
+    Reveal.initialize({
+        hash: true,
+        controls: true,
+        controlsLayout: 'edges',
+        controlsTutorial: true,
+        progress: true,
+        center: false,
+        transition: 'slide',
+        width: 1200,
+        height: 700,
+        margin: 0.04,
+
+        keyboard: {
+            37: 'prev',
+            39: 'next',
+            38: 'prev',
+            40: 'next'
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const filterButtons = document.querySelectorAll('.filter-preset .btn');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('btn-success', 'btn-primary', 'btn-warning');
+                    btn.classList.add('btn-outline-success', 'btn-outline-primary', 'btn-outline-warning');
+                });
+
+                this.classList.remove('btn-outline-success', 'btn-outline-primary', 'btn-outline-warning');
+
+                if (this.textContent.includes('Короткие')) {
+                    this.classList.add('btn-success');
+                } else if (this.textContent.includes('Средние')) {
+                    this.classList.add('btn-primary');
+                } else {
+                    this.classList.add('btn-warning');
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
