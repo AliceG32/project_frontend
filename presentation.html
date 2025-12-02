@@ -18,22 +18,36 @@
         }
 
         .reveal .slides {
-            text-align: left;
+            text-align: center;
             width: 100% !important;
             height: 100% !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
         }
 
         .reveal section {
             height: 100%;
             padding: 20px;
             box-sizing: border-box;
-            overflow: hidden;
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            justify-content: center !important;
+            text-align: center !important;
+            width: 100% !important;
+            max-width: 1200px !important;
+            margin: 0 auto !important;
         }
 
-        .reveal h1, .reveal h2, .reveal h3 {
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
             color: #0d6efd;
             font-weight: 600;
             word-wrap: break-word;
+            text-align: center !important;
+            width: 100% !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
 
         .reveal h1 {
@@ -55,15 +69,22 @@
             font-size: 0.9em;
             line-height: 1.4;
             margin-bottom: 0.5em;
+            text-align: center !important;
+            max-width: 100% !important;
         }
 
         .reveal ul, .reveal ol {
-            margin-left: 1em;
+            margin-left: 0 !important;
             margin-bottom: 1em;
+            padding-left: 0 !important;
+            text-align: left;
+            display: inline-block;
+            width: auto !important;
         }
 
         .reveal li {
             margin-bottom: 0.3em;
+            text-align: left;
         }
 
         .back-to-site {
@@ -90,14 +111,17 @@
 
         .reveal table {
             font-size: 0.7em;
-            margin: 15px auto;
-            width: 95% !important;
+            margin: 15px auto !important;
+            width: auto !important;
+            max-width: 95% !important;
             table-layout: fixed;
+            display: table !important;
         }
 
         .reveal th, .reveal td {
             padding: 8px 12px;
             word-wrap: break-word;
+            text-align: center !important;
         }
 
         .reveal .table-primary {
@@ -113,11 +137,14 @@
             border: 2px solid #0d6efd;
             border-radius: 10px;
             padding: 12px;
-            margin: 8px;
+            margin: 8px auto !important;
             background: #f8f9fa;
             font-size: 0.7em;
             max-height: 400px;
             overflow: auto;
+            width: auto !important;
+            max-width: 90% !important;
+            display: block !important;
         }
 
         .api-endpoint {
@@ -125,9 +152,11 @@
             padding: 8px 10px;
             border-radius: 5px;
             font-family: 'Courier New', monospace;
-            margin: 4px 0;
+            margin: 4px auto !important;
             font-size: 0.7em;
             word-break: break-all;
+            max-width: 90% !important;
+            text-align: left !important;
         }
 
         .api-endpoint pre {
@@ -143,6 +172,9 @@
             border-radius: 8px;
             border-left: 4px solid #0dcaf0;
             font-size: 0.8em;
+            margin: 0 auto !important;
+            max-width: 90% !important;
+            display: block !important;
         }
 
         .duration-filter-demo {
@@ -150,7 +182,9 @@
             padding: 15px;
             border-radius: 10px;
             border-left: 4px solid #28a745;
-            margin: 10px 0;
+            margin: 10px auto !important;
+            max-width: 90% !important;
+            display: block !important;
         }
 
         .filter-preset {
@@ -158,8 +192,11 @@
             border: 1px solid #c3e6cb;
             border-radius: 5px;
             padding: 8px;
-            margin: 5px 0;
+            margin: 5px auto !important;
             font-size: 0.8em;
+            max-width: 90% !important;
+            display: block !important;
+            text-align: center !important;
         }
 
         .actor-connections {
@@ -167,18 +204,24 @@
             padding: 15px;
             border-radius: 10px;
             border-left: 4px solid #ffc107;
+            margin: 0 auto !important;
+            max-width: 90% !important;
         }
 
         .actor-card {
             border: 1px solid #dee2e6;
             border-radius: 8px;
             padding: 10px;
-            margin: 5px 0;
+            margin: 5px auto !important;
             background: white;
+            max-width: 90% !important;
         }
 
         .text-small {
             font-size: 0.8em !important;
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
 
         .text-smaller {
@@ -191,16 +234,84 @@
         }
 
         .two-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            display: flex !important;
+            flex-wrap: wrap !important;
+            justify-content: center !important;
             gap: 20px;
-            align-items: start;
+            align-items: flex-start;
+            width: 100% !important;
+            max-width: 1000px !important;
+            margin: 0 auto !important;
+        }
+
+        .two-columns > div {
+            flex: 1 1 45% !important;
+            min-width: 300px !important;
+            max-width: 45% !important;
         }
 
         .scrollable {
             max-height: 400px;
             overflow-y: auto;
             padding-right: 10px;
+            margin: 0 auto !important;
+        }
+
+        .reveal section > * {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .reveal section ul,
+        .reveal section ol {
+            display: inline-block !important;
+            text-align: left !important;
+        }
+
+        .design-mockup .text-center,
+        .duration-filter-demo .text-center,
+        .search-demo .text-center {
+            text-align: center !important;
+        }
+
+        .design-mockup .btn,
+        .duration-filter-demo .btn,
+        .search-demo .btn {
+            display: inline-block !important;
+            margin: 5px !important;
+        }
+
+        .design-mockup .row,
+        .duration-filter-demo .row,
+        .search-demo .row {
+            display: flex !important;
+            justify-content: center !important;
+            flex-wrap: wrap !important;
+        }
+
+        .design-mockup .col-6,
+        .duration-filter-demo .col-6,
+        .search-demo .col-6 {
+            flex: 0 0 auto !important;
+            width: auto !important;
+            max-width: 45% !important;
+            min-width: 200px !important;
+        }
+
+        .list-group {
+            margin-left: auto !important;
+            margin-right: auto !important;
+            display: inline-block !important;
+            text-align: left !important;
+            width: auto !important;
+            min-width: 300px !important;
+        }
+
+        .input-group {
+            max-width: 500px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
 
         @media (max-width: 768px) {
@@ -221,6 +332,34 @@
                 left: 10px;
                 padding: 8px 12px;
                 font-size: 12px;
+            }
+
+            .two-columns > div {
+                max-width: 100% !important;
+                min-width: 100% !important;
+            }
+
+            .design-mockup .col-6,
+            .duration-filter-demo .col-6,
+            .search-demo .col-6 {
+                max-width: 100% !important;
+                min-width: 100% !important;
+                margin-bottom: 15px !important;
+            }
+        }
+
+        @supports (-moz-appearance: none) {
+            .reveal section {
+                display: flex !important;
+                justify-content: center !important;
+                align-items: center !important;
+                flex-direction: column !important;
+            }
+
+            .reveal .slides {
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
             }
         }
     </style>
@@ -312,7 +451,7 @@
         <section>
             <section>
                 <h2>Дизайн системы</h2>
-                <h4>Главная страница с фильтром длительности</h4>
+                <h4>Главная страница</h4>
                 <div class="design-mockup">
                     <div class="d-flex justify-content-between mb-2 p-2 bg-primary text-white">
                         <span>🎬 Каталог Фильмов</span>
@@ -500,15 +639,15 @@
                         <h6 class="text-small">🎬 Найденные фильмы:</h6>
                         <div class="list-group">
                             <div class="list-group-item list-group-item-success py-2">
-                                ✅ <strong>Властелин колец: Братство кольца</strong><br>
+                                <strong>Властелин колец: Братство кольца</strong><br>
                                 <small>178 мин · Фэнтези · ⭐ 8.8/10</small>
                             </div>
                             <div class="list-group-item list-group-item-success py-2">
-                                ✅ <strong>Властелин колец: Две крепости</strong><br>
+                                <strong>Властелин колец: Две крепости</strong><br>
                                 <small>179 мин · Фэнтези · ⭐ 8.7/10</small>
                             </div>
                             <div class="list-group-item list-group-item-warning py-2">
-                                ⚠️ <strong>Гарри Поттер и Дары Смерти: Часть 2</strong><br>
+                                <strong>Гарри Поттер и Дары Смерти: Часть 2</strong><br>
                                 <small>130 мин · Фэнтези · ⭐ 8.1/10</small>
                             </div>
                         </div>
@@ -533,11 +672,11 @@
         controlsLayout: 'edges',
         controlsTutorial: true,
         progress: true,
-        center: false,
+        center: true,
         transition: 'slide',
-        width: 1200,
-        height: 700,
-        margin: 0.04,
+        width: '100%',
+        height: '100%',
+        margin: 0.1,
 
         keyboard: {
             37: 'prev',
@@ -548,6 +687,15 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
+        const sections = document.querySelectorAll('.reveal section');
+        sections.forEach(section => {
+            section.style.display = 'flex';
+            section.style.flexDirection = 'column';
+            section.style.alignItems = 'center';
+            section.style.justifyContent = 'center';
+            section.style.textAlign = 'center';
+        });
+
         const filterButtons = document.querySelectorAll('.filter-preset .btn');
 
         filterButtons.forEach(button => {
@@ -568,6 +716,11 @@
                 }
             });
         });
+
+        setTimeout(() => {
+            Reveal.layout();
+            Reveal.sync();
+        }, 100);
     });
 </script>
 </body>
